@@ -14,10 +14,10 @@ const Dashboard = () => {
 
   useEffect(() => {
     fetchDashboardData();
-  }, []);
+  }, );
 
   const fetchDashboardData = async () => {
-    try {
+    try { 
       const [profileResponse, statsResponse, bmiResponse] = await Promise.all([
         userAPI.getProfile(),
         tasksAPI.getTaskStats(),

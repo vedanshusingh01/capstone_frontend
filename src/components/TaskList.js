@@ -14,11 +14,7 @@ const TaskList = ({ onTaskUpdate }) => {
     dueDate: '',
   });
 
-  useEffect(() => {
-    fetchTasks();
-  }, [filter]);
-
-  const fetchTasks = async () => {
+  const fetchTasks = React.useCallback(async () => {
     try {
       setLoading(true);
       const params = {};
@@ -33,7 +29,11 @@ const TaskList = ({ onTaskUpdate }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filter]);
+
+  useEffect(() => {
+    fetchTasks();
+  }, [fetchTasks]);
 
   const handleAddTask = async (e) => {
     e.preventDefault();
